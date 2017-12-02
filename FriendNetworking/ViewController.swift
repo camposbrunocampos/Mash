@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import AudioToolbox
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -66,6 +67,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("SAI FORA")
     }
+    var lastState : CLProximity?
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
@@ -74,21 +76,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let major = CLBeaconMajorValue(nearestBeacon.major)
             let minor = CLBeaconMinorValue(nearestBeacon.minor)
             
+            var duration: Double?
+            var shouldAnimate: Bool?
+            shouldAnimate = lastState != nearestBeacon.proximity
+            
             switch nearestBeacon.proximity {
             case .near:
                 // Display information about the relevant exhibit.
                 self.beaconStateLabel.text = "NEAR"
+                duration = 0.8
                 break
             case .immediate:
+                duration = 0.1
                 self.beaconStateLabel.text = "IMMEDIATE"
                 break
             case .far:
+                duration = 1.3
                 self.beaconStateLabel.text = "FAR"
                 break
             default:
                 // Dismiss exhibit information, if it is displayed.
 //                dismissExhibit(major: major, minor: minor)
                 break
+            }
+            
+            if let animationTime = duration {
+                UIView.animate(withDuration: animationTime,
+                               delay:0.0,
+                               options:[.allowUserInteraction, .curveEaseInOut],
+                               animations: { self.view.alpha = 0 }) { _ in
+                                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                                UIView.animate(withDuration: animationTime, animations: {
+                                    self.view.alpha = 1
+                                })
+                }
+                
+                
             }
         }
     }
