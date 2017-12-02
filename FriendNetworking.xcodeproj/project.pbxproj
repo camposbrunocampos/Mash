@@ -14,6 +14,8 @@
 		34DA62621FD304BE006B325D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34DA62601FD304BE006B325D /* LaunchScreen.storyboard */; };
 		34DA626D1FD304BE006B325D /* FriendNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DA626C1FD304BE006B325D /* FriendNetworkingTests.swift */; };
 		34DA62781FD304BF006B325D /* FriendNetworkingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DA62771FD304BE006B325D /* FriendNetworkingUITests.swift */; };
+		34DA62871FD3092B006B325D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34DA62861FD30914006B325D /* CoreLocation.framework */; };
+		34DA62891FD318A0006B325D /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DA62881FD318A0006B325D /* Sender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		34DA62731FD304BE006B325D /* FriendNetworkingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendNetworkingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34DA62771FD304BE006B325D /* FriendNetworkingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendNetworkingUITests.swift; sourceTree = "<group>"; };
 		34DA62791FD304BF006B325D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		34DA62861FD30914006B325D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		34DA62881FD318A0006B325D /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34DA62871FD3092B006B325D /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +86,7 @@
 				34DA626B1FD304BE006B325D /* FriendNetworkingTests */,
 				34DA62761FD304BE006B325D /* FriendNetworkingUITests */,
 				34DA62551FD304BE006B325D /* Products */,
+				34DA62851FD30914006B325D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +105,7 @@
 			children = (
 				34DA62571FD304BE006B325D /* AppDelegate.swift */,
 				34DA62591FD304BE006B325D /* ViewController.swift */,
+				34DA62881FD318A0006B325D /* Sender.swift */,
 				34DA625B1FD304BE006B325D /* Main.storyboard */,
 				34DA625E1FD304BE006B325D /* Assets.xcassets */,
 				34DA62601FD304BE006B325D /* LaunchScreen.storyboard */,
@@ -123,6 +130,14 @@
 				34DA62791FD304BF006B325D /* Info.plist */,
 			);
 			path = FriendNetworkingUITests;
+			sourceTree = "<group>";
+		};
+		34DA62851FD30914006B325D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34DA62861FD30914006B325D /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34DA625A1FD304BE006B325D /* ViewController.swift in Sources */,
+				34DA62891FD318A0006B325D /* Sender.swift in Sources */,
 				34DA62581FD304BE006B325D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,11 +442,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TLK6VZ6RAB;
 				INFOPLIST_FILE = FriendNetworking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lets.FriendNetworking;
+				PRODUCT_BUNDLE_IDENTIFIER = FriendNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -440,11 +461,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TLK6VZ6RAB;
 				INFOPLIST_FILE = FriendNetworking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Lets.FriendNetworking;
+				PRODUCT_BUNDLE_IDENTIFIER = FriendNetworking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
