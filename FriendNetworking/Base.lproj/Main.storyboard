@@ -42,13 +42,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="euzineo" translatesAutoresizingMaskIntoConstraints="NO" id="Die-6d-qbQ">
+                                <rect key="frame" x="97" y="243.5" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="Hds-2p-RpN"/>
+                                    <constraint firstAttribute="height" constant="180" id="gkD-1t-FSd"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.83921568627450982" green="0.10588235294117647" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Die-6d-qbQ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="JSS-QN-DfT"/>
+                            <constraint firstItem="Die-6d-qbQ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kbA-yF-gmO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="beaconStateLabel" destination="hdH-ve-5UE" id="MI9-Tx-0aA"/>
                         <outlet property="deviceIdLabel" destination="ZdP-f1-S2T" id="O51-XQ-aR4"/>
+                        <outlet property="profileImageView" destination="Die-6d-qbQ" id="fTI-qo-fbd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -56,4 +68,7 @@
             <point key="canvasLocation" x="140" y="110.19490254872565"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="euzineo" width="1184" height="1184"/>
+    </resources>
 </document>

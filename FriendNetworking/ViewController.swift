@@ -15,6 +15,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var deviceIdLabel: UILabel!
     @IBOutlet weak var beaconStateLabel: UILabel!
     
+    var iphone6Plus = "267EA4CA-6ED4-4267-A556-7B2C8651E35C"
+    @IBOutlet weak var profileImageView: UIImageView!
+    var iphoneSE = "659DE155-67DA-4AA0-8DDB-DA26A1F854D7"
+    
     var locationManager = CLLocationManager()
     var beaconSender: Sender?
     
@@ -24,6 +28,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         Sender.sharedInstance.initialize()
         deviceIdLabel.text = UIDevice.current.identifierForVendor?.uuidString
+        
+        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+        self.profileImageView.clipsToBounds = true;
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,8 +47,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if CLLocationManager.isMonitoringAvailable(for:
             CLBeaconRegion.self) {
             // Match all beacons with the specified UUID
-            let proximityUUID = UUID(uuidString:
-                "659DE155-67DA-4AA0-8DDB-DA26A1F854D7")
+            let proximityUUID = UUID(uuidString: iphone6Plus)
             let beaconID = "FriendNetworking"
             
             // Create the region and begin monitoring it.
@@ -77,8 +83,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let minor = CLBeaconMinorValue(nearestBeacon.minor)
             
             var duration: Double?
-            var shouldAnimate: Bool?
-            shouldAnimate = lastState != nearestBeacon.proximity
+            var shouldAnimate = true
             
             switch nearestBeacon.proximity {
             case .near:
@@ -91,7 +96,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 self.beaconStateLabel.text = "IMMEDIATE"
                 break
             case .far:
-                duration = 1.3
+                duration = 2
                 self.beaconStateLabel.text = "FAR"
                 break
             default:
@@ -100,18 +105,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 break
             }
             
-            if let animationTime = duration {
-                UIView.animate(withDuration: animationTime,
-                               delay:0.0,
-                               options:[.allowUserInteraction, .curveEaseInOut],
-                               animations: { self.view.alpha = 0 }) { _ in
-                                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                                UIView.animate(withDuration: animationTime, animations: {
-                                    self.view.alpha = 1
-                                })
+            if (shouldAnimate) {
+                if let animationTime = duration {
+                    shouldAnimate = false
+                    UIView.animate(withDuration: animationTime,
+                                   delay:0.0,
+                                   options:[.allowUserInteraction, .curveEaseInOut],
+                                   animations: { self.view.alpha = 0 }) { _ in
+                                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                                    UIView.animate(withDuration: animationTime, animations: {
+                                        self.view.alpha = 1
+                                        shouldAnimate = true
+                                    })
+                    }
                 }
-                
-                
             }
         }
     }
