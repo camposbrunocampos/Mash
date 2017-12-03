@@ -12,9 +12,6 @@ import AudioToolbox
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var deviceIdLabel: UILabel!
-    @IBOutlet weak var beaconStateLabel: UILabel!
-    
     var iphone6Plus = "267EA4CA-6ED4-4267-A556-7B2C8651E35C"
     @IBOutlet weak var profileImageView: UIImageView!
     var iphoneSE = "659DE155-67DA-4AA0-8DDB-DA26A1F854D7"
@@ -27,7 +24,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         Sender.sharedInstance.initialize()
-        deviceIdLabel.text = UIDevice.current.identifierForVendor?.uuidString
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
         self.profileImageView.clipsToBounds = true;
@@ -88,16 +84,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             switch nearestBeacon.proximity {
             case .near:
                 // Display information about the relevant exhibit.
-                self.beaconStateLabel.text = "NEAR"
+//                self.beaconStateLabel.text = "NEAR"
                 duration = 0.8
                 break
             case .immediate:
                 duration = 0.1
-                self.beaconStateLabel.text = "IMMEDIATE"
+//                self.beaconStateLabel.text = "IMMEDIATE"
                 break
             case .far:
-                duration = 2
-                self.beaconStateLabel.text = "FAR"
+                duration = 4
+//                self.beaconStateLabel.text = "FAR"
                 break
             default:
                 // Dismiss exhibit information, if it is displayed.
